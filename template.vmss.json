@@ -100,7 +100,7 @@
         }
       }
     },
-    "networkConfiguration" : "[parameters('networkConfiguration')]"
+    "networkConfiguration": "[parameters('networkConfiguration')]"
   },
   "resources": [
     {
@@ -111,10 +111,10 @@
         "capacity": "[variables('instanceCount')]"
       },
       "name": "[variables('namingInfix')]",
-      "apiVersion" :"2016-04-30-preview",
+      "apiVersion": "2016-04-30-preview",
       "location": "[variables('resourceLocation')]",
       "properties": {
-        "overprovision" : false,
+        "overprovision": false,
         "upgradePolicy": {
           "mode": "Automatic"
         },
@@ -124,6 +124,13 @@
               "caching": "ReadOnly",
               "createOption": "FromImage"
             },
+            "dataDisks": [
+              {
+                "diskSizeGB": 100,
+                "lun" : 0,
+                "createOption" :"Empty"
+              }
+            ],
             "imageReference": "[variables('imageReference')]"
           },
           "osProfile": "[variables('osProfileReference')]",
