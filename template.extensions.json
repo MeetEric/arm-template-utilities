@@ -8,6 +8,9 @@
     "extensions": {
       "type": "array"
     },
+    "extensionsRoot": {
+      "type": "string"
+    },
     "contentRoot": {
       "type": "string"
     }
@@ -42,7 +45,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/extensions/', parameters('extensions')[copyIndex()].extension)]"
+          "uri": "[concat(parameters('extensionsRoot'), parameters('extensions')[copyIndex()].extension)]"
         },
         "mode": "Incremental",
         "parameters": {

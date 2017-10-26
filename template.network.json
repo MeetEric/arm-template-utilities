@@ -36,7 +36,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.subnets.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.subnets.json')]"
         },
         "mode": "Incremental",
         "parameters": {

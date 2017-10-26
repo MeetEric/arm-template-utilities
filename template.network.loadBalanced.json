@@ -50,7 +50,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.json')]"
         },
         "mode": "Incremental",
         "parameters": {
@@ -76,7 +76,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.loadBalancer.public.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.loadBalancer.public.json')]"
         },
         "mode": "Incremental",
         "parameters": {

@@ -45,7 +45,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/', variables('templateName'))]"
+          "uri": "[concat(parameters('contentRoot'), '/', variables('templateName'))]"
         },
         "mode": "Incremental",
         "parameters": {

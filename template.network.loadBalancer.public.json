@@ -44,7 +44,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.loadBalancer.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.loadBalancer.json')]"
         },
         "mode": "Incremental",
         "parameters": {

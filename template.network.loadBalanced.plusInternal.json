@@ -41,7 +41,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.loadBalanced.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.loadBalanced.json')]"
         },
         "mode": "Incremental",
         "parameters": {
@@ -70,7 +70,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.network.loadBalancer.internal.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.network.loadBalancer.internal.json')]"
         },
         "mode": "Incremental",
         "parameters": {

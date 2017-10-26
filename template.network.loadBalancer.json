@@ -50,7 +50,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.array.merge.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.array.merge.json')]"
         },
         "mode": "Incremental"
       }
@@ -66,7 +66,7 @@
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
-          "uri": "[concat(parameters('contentRoot'), '/utilityTemplates/template.array.merge.json')]"
+          "uri": "[concat(parameters('contentRoot'), '/template.array.merge.json')]"
         },
         "mode": "Incremental",
         "parameters": {
