@@ -50,10 +50,10 @@
     "networkConfiguration": {
       "type": "object"
     },
-    "commandsJson" : {
+    "commandsJson": {
       "type": "secureObject",
       "defaultValue": {
-        "Commands" : []
+        "Commands": []
       }
     },
     "contentRoot": {
@@ -62,9 +62,23 @@
   },
   "variables": {
     "resourceLocation": "[parameters('location')]",
-    "scriptName" : "runScripts.sh",
+    "curl": "curl -S -s --connect-timeout 5 --retry 15",
+    "autoPartUrl": "[concat(parameters('contentRoot'), '/initScripts/autopart.sh')]",
+    "localAutoPart": "/root/autopart.sh",
+    "scriptName": "runScripts.sh",
     "machineSetupScriptUri": "[concat(parameters('contentRoot'), '/', variables('scriptName'))]",
-    "scriptCommand": "[concat('sh ', variables('scriptName'), ' ', parameters('contentRoot'), ' ', base64(string(parameters('commandsJson').Commands)))]"
+    "autoPartCommands": [
+      {
+        "name": "Download autopart.sh",
+        "command": "[concat(variables('curl'), ' -o ', variables('localAutoPart'), ' ', variables('autoPartUrl'))]"
+      },
+      {
+        "name": "Execute autopart.sh",
+        "command": "[concat('bash ', variables('localAutoPart'))]"
+      }
+    ],
+    "commands": "[concat(variables('autoPartCommands'), parameters('commandsJson').Commands)]",
+    "scriptCommand": "[concat('sh ', variables('scriptName'), ' ', parameters('contentRoot'), ' ', base64(string(variables('commands'))))]"
   },
   "resources": [
     {
