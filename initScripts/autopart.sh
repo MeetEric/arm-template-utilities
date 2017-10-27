@@ -110,13 +110,13 @@ do
     if [ ${?} -ne 0 ];
     then
         echo "Creating filesystem on ${PARTITION}."
-        #echo "Press Ctrl-C if you don't want to destroy all data on ${PARTITION}"
-        #sleep 5
-        mkfs -j -t ext4 ${PARTITION}
+        echo "Press Ctrl-C if you don't want to destroy all data on ${PARTITION}"
+        sleep 5
+        /sbin/mkfs.ext2 -j -t ext4 ${PARTITION}
     fi
     MOUNTPOINT=$(get_next_mountpoint)
     echo "Next mount point appears to be ${MOUNTPOINT}"
-    [ -d "${MOUNTPOINT}" ] || mkdir "${MOUNTPOINT}"
+    [ -d "${MOUNTPOINT}" ] || mkdir -p "${MOUNTPOINT}"
     read UUID FS_TYPE < <(blkid -u filesystem ${PARTITION}|awk -F "[= ]" '{print $3" "$5}'|tr -d "\"")
     add_to_fstab "${UUID}" "${MOUNTPOINT}"
     echo "Mounting disk ${PARTITION} on ${MOUNTPOINT}"
