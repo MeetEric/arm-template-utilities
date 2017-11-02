@@ -71,10 +71,6 @@
       {
         "name": "Download autopart.sh",
         "command": "[concat(variables('curl'), ' -o ', variables('localAutoPart'), ' ', variables('autoPartUrl'))]"
-      },
-      {
-        "name": "Execute autopart.sh",
-        "command": "[concat('bash ', variables('localAutoPart'))]"
       }
     ],
     "commands": "[concat(variables('autoPartCommands'), parameters('commandsJson').Commands)]",
