@@ -110,8 +110,8 @@ do
     if [ ${?} -ne 0 ];
     then
         echo "Creating filesystem on ${PARTITION}."
-        #echo "Press Ctrl-C if you don't want to destroy all data on ${PARTITION}"
-        #sleep 5
+        echo "Press Ctrl-C if you don't want to destroy all data on ${PARTITION}"
+        sleep 5
         mkfs -j -t ext4 ${PARTITION}
     fi
     MOUNTPOINT=$(get_next_mountpoint)
