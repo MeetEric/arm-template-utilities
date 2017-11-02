@@ -71,6 +71,14 @@
       {
         "name": "Download autopart.sh",
         "command": "[concat(variables('curl'), ' -o ', variables('localAutoPart'), ' ', variables('autoPartUrl'))]"
+      },
+      {
+        "name": "chmod autopart.sh",
+        "command": "[concat('chmod 0755 ', variables('localAutoPart'))]"
+      },
+      {
+        "name": "execute autopart.sh",
+        "command": "[variables('localAutoPart')]"
       }
     ],
     "commands": "[concat(variables('autoPartCommands'), parameters('commandsJson').Commands)]",
