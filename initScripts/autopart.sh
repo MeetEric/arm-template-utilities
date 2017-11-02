@@ -89,6 +89,7 @@ then
 fi
 }
 
+echo "PATH: ${PATH}"
 if [ -z "${1}" ];
 then
     DISKS=($(scan_for_new_disks))
@@ -116,7 +117,7 @@ do
     fi
     MOUNTPOINT=$(get_next_mountpoint)
     echo "Next mount point appears to be ${MOUNTPOINT}"
-    [ -d "${MOUNTPOINT}" ] || mkdir "${MOUNTPOINT}"
+    [ -d "${MOUNTPOINT}" ] || mkdir -p "${MOUNTPOINT}"
     read UUID FS_TYPE < <(blkid -u filesystem ${PARTITION}|awk -F "[= ]" '{print $3" "$5}'|tr -d "\"")
     add_to_fstab "${UUID}" "${MOUNTPOINT}"
     echo "Mounting disk ${PARTITION} on ${MOUNTPOINT}"
