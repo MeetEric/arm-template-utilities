@@ -89,7 +89,6 @@ then
 fi
 }
 
-echo "PATH: ${PATH}"
 if [ -z "${1}" ];
 then
     DISKS=($(scan_for_new_disks))
@@ -113,7 +112,7 @@ do
         echo "Creating filesystem on ${PARTITION}."
         echo "Press Ctrl-C if you don't want to destroy all data on ${PARTITION}"
         sleep 5
-        mkfs -j -t ext4 ${PARTITION}
+        /sbin/mkfs.ext2 -j -t ext4 ${PARTITION}
     fi
     MOUNTPOINT=$(get_next_mountpoint)
     echo "Next mount point appears to be ${MOUNTPOINT}"
