@@ -47,6 +47,14 @@
         "description": "ssh public key for connecting to VMs."
       }
     },
+    "dataDiskSizeGB" : {
+      "type" : "int",
+      "defaultValue": 100,
+      "minValue": 1,
+      "metadata": {
+        "description" : "One data disk will be added automatically with this size."
+      }
+    },
     "networkConfiguration": {
       "type": "object"
     },
@@ -125,6 +133,9 @@
           },
           "networkConfiguration": {
             "value": "[parameters('networkConfiguration')]"
+          },
+          "dataDiskSizeGB" : {
+            "value": "[parameters('dataDiskSizeGB')]"
           }
         }
       }

@@ -34,6 +34,14 @@
         "description": "Number of VM instances (100 or less)."
       }
     },
+    "dataDiskSizeGB" : {
+      "type" : "int",
+      "defaultValue": 100,
+      "minValue": 1,
+      "metadata": {
+        "description" : "One data disk will be added automatically with this size."
+      }
+    },
     "username": {
       "type": "string",
       "metadata": {
@@ -126,7 +134,7 @@
             },
             "dataDisks": [
               {
-                "diskSizeGB": 100,
+                "diskSizeGB": "[parameters('dataDiskSizeGB')]",
                 "lun" : 0,
                 "createOption" :"Empty"
               }
