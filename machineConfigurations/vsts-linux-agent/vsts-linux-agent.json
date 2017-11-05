@@ -1,0 +1,62 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "prefix": {
+            "type": "string",
+            "maxLength": 10,
+            "minLength": 1
+        },
+        "sshPublicKey": {
+            "type": "string"
+        },
+        "username": {
+            "defaultValue": "azureuser",
+            "type": "string"
+        },
+        "arguments": {
+            "type": "secureObject",
+            "defaultValue": {
+                "VSTS_ACCOUNT": "",
+                "VSTS_TOKEN": "",
+                "VSTS_POOL": "Default"
+            }
+        },
+        "dockerComposeYamlUrl": {
+            "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/EthereumEx/arm-template-utilities/master/machineConfigurations/vsts-linux-agent/docker-compose.yaml"
+        }
+    },
+    "variables": {
+        "contentRootUrl": "https://raw.githubusercontent.com/EthereumEx/arm-template-utilities/master",
+    },
+    "resources": [{
+        "type": "Microsoft.Resources/deployments",
+        "name": "VSTS-Linux-Agents.VMSS",
+        "apiVersion": "2015-01-01",
+        "properties": {
+            "templateLink": {
+                "contentVersion": "1.0.0.0",
+                "uri": "[concat(variables('contentRootUrl'), '/template.vmss.')]"
+            },
+            "mode": "Incremental",
+            "parameters": {
+                "prefix": {
+                    "value": "[parameters('prefix')]"
+                },
+                "username": {
+                    "value": "[parameters('username')]"
+                },
+                "sshPublicKey": {
+                    "value": "[parameters('sshPublicKey')]"
+                },
+                "arguments": {
+                    "value": "[parameters('arguments')]"
+                },
+                "dockerComposeYamlUrl": {
+                    "value": "[parameters('dockerComposeYamlUrl')]"
+                }
+            }
+        }
+    }]
+}

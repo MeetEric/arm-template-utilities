@@ -1,0 +1,16 @@
+version: '3'
+services:
+  agent:
+    image: ethereumex/vsts-linux-agent
+    hostname: ${HOST_NAME}-d
+    restart: always
+    environment:
+      - VSTS_ACCOUNT=${VSTS_ACCOUNT} 
+      - VSTS_TOKEN=${VSTS_TOKEN}
+      - VSTS_AGENT=${HOST_NAME}-agent
+      - VSTS_POOL=${VSTS_POOL} 
+      - VSTS_WORK='/var/vsts/$VSTS_AGENT' 
+      - LARGEDISK=true
+    volumes:
+      - /media/disk1:/var/vsts
+      - /var/run/docker.dock:/var/run/docker.sock
