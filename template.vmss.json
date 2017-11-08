@@ -96,6 +96,7 @@
       "computerNamePrefix": "[variables('namingInfix')]",
       "adminUsername": "[parameters('username')]",
       "adminPassword": "",
+      "customData" : "SGVsbG8gV29ybGQh",
       "linuxConfiguration": {
         "disablePasswordAuthentication": "true",
         "ssh": {
