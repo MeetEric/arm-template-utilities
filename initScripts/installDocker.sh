@@ -2,8 +2,10 @@
 # Usage: execute sudo -i, first.
 # wget -q -O - "$@" https://gist.github.com/catataw/63044e79c3cfa20198408130ba52e110/raw/ --no-cache | sh
 # After running the script reboot and check whether docker is running.
+export DEBIAN_FRONTEND=noninteractive 
 
 DOCKER_RESULT=1
+DOCKER_COMPOSE_VERSION=v2.0.0
 
 while [ $DOCKER_RESULT -ne 0 ]; do
   echo "#################################################"
@@ -11,41 +13,30 @@ while [ $DOCKER_RESULT -ne 0 ]; do
   echo "#################################################"
   apt-get update -y
   apt-get upgrade -y
-  apt-get install -y apt-transport-https ca-certificates
+  apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
 
-  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
-  apt-get update -y
-  apt-get install -y linux-image-extra-$(uname -r) && sudo modprobe aufs
-  rm -f /etc/apt/sources.list.d/docker.list
-  su -c "echo 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' >> /etc/apt/sources.list.d/docker.list"
-  apt-get update -y
-  echo "#################################################"
-  echo "  Purging Docker"
-  echo "#################################################"
-  apt-get purge lxc-docker
-  apt-cache policy docker-engine
+  echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+
   echo "#################################################"
   echo "  Update and Install Docker"
   echo "#################################################"
+  
   apt-get update -y
-  apt-get install -y docker-engine
+  apt-get update
+  apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose
+  
   which docker
   DOCKER_RESULT=$?
   echo "#################################################"
   echo "  Docker install result ${DOCKER_RESULT}"
   echo "#################################################"
 done
-
-
-echo "#################################################"
-echo "  Starting Docker "
-echo "#################################################"
-service docker start
-
-echo ""
-echo "#################################################"
-echo "  Installing Docker Compose "
-echo "#################################################"
-curl -L -f -S -s --connect-timeout 5 --retry 15 -o /usr/local/bin/docker-compose https://github.com/docker/compose/releases/download/1.13.0/docker-compose-`uname -s`-`uname -m`
-chmod +x /usr/local/bin/docker-compose
