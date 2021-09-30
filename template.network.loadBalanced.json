@@ -31,7 +31,6 @@
     "resourceLocation": "[parameters('location')]",
     "contentRoot": "[parameters('contentRoot')]",
     "namingInfix": "[parameters('namingInfix')]",
-    "networkName": "[concat(variables('namingInfix'), '.Network')]",
     "defaultExportRules": [
       {
         "Name": "SSH",
@@ -40,12 +39,13 @@
         "Protocol": "Tcp"
       }
     ],
-    "loadBalancerTemplate": "[concat(variables('namingInfix'), '-lb-t')]"
+    "loadBalancerTemplate": "[concat(variables('namingInfix'), '-lb-t')]",
+    "networkTemplateName": "[concat(variables('loadBalancerTemplate'), '.Network')]"
   },
   "resources": [
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[variables('networkName')]",
+      "name": "[variables('networkTemplateName')]",
       "apiVersion": "2021-04-01",
       "properties": {
         "templateLink": {
@@ -100,10 +100,10 @@
     "Network": {
       "type": "object",
       "value": {
-        "id": "[reference(variables('networkName')).outputs.Result.value.id]",
+        "id": "[reference(variables('networkTemplateName')).outputs.Result.value.id]",
         "ip": "[reference(variables('loadBalancerTemplate')).outputs.LoadBalancer.value.ip]",
         "backendPools": "[reference(variables('loadBalancerTemplate')).outputs.LoadBalancer.value.backendPools]",
-        "subnets": "[reference(variables('networkName')).outputs.Result.value.network.subnets]"
+        "subnets": "[reference(variables('networkTemplateName')).outputs.Result.value.network.subnets]"
       }
     }
   }
