@@ -1,5 +1,5 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
@@ -47,12 +47,12 @@
         "description": "ssh public key for connecting to VMs."
       }
     },
-    "dataDiskSizeGB" : {
-      "type" : "int",
+    "dataDiskSizeGB": {
+      "type": "int",
       "defaultValue": 100,
       "minValue": 1,
       "metadata": {
-        "description" : "One data disk will be added automatically with this size."
+        "description": "One data disk will be added automatically with this size."
       }
     },
     "networkConfiguration": {
@@ -134,7 +134,7 @@
           "networkConfiguration": {
             "value": "[parameters('networkConfiguration')]"
           },
-          "dataDiskSizeGB" : {
+          "dataDiskSizeGB": {
             "value": "[parameters('dataDiskSizeGB')]"
           }
         }

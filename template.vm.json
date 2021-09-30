@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json",
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
@@ -73,7 +73,7 @@
             },
             "caching": "ReadWrite"
           },
-          "dataDisks": [ ]
+          "dataDisks": []
         },
         "osProfile": {
           "computerName": "[variables('machineName')]",
@@ -89,7 +89,7 @@
               ]
             }
           },
-          "secrets": [ ],
+          "secrets": [],
           "adminPassword": ""
         },
         "networkProfile": {
@@ -125,7 +125,7 @@
           }
         ],
         "dnsSettings": {
-          "dnsServers": [ ]
+          "dnsServers": []
         },
         "enableIPForwarding": false,
         "networkSecurityGroup": {

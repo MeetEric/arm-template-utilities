@@ -1,5 +1,5 @@
 {
-    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
         "prefix": {
@@ -28,35 +28,37 @@
         }
     },
     "variables": {
-        "contentRootUrl": "https://raw.githubusercontent.com/EthereumEx/arm-template-utilities/master",
+        "contentRootUrl": "https://raw.githubusercontent.com/EthereumEx/arm-template-utilities/master"
     },
-    "resources": [{
-        "type": "Microsoft.Resources/deployments",
-        "name": "VSTS-Linux-Agents.VMSS",
-        "apiVersion": "2015-01-01",
-        "properties": {
-            "templateLink": {
-                "contentVersion": "1.0.0.0",
-                "uri": "[concat(variables('contentRootUrl'), '/template.vmss.')]"
-            },
-            "mode": "Incremental",
-            "parameters": {
-                "prefix": {
-                    "value": "[parameters('prefix')]"
+    "resources": [
+        {
+            "type": "Microsoft.Resources/deployments",
+            "name": "VSTS-Linux-Agents.VMSS",
+            "apiVersion": "2015-01-01",
+            "properties": {
+                "templateLink": {
+                    "contentVersion": "1.0.0.0",
+                    "uri": "[concat(variables('contentRootUrl'), '/template.vmss.')]"
                 },
-                "username": {
-                    "value": "[parameters('username')]"
-                },
-                "sshPublicKey": {
-                    "value": "[parameters('sshPublicKey')]"
-                },
-                "arguments": {
-                    "value": "[parameters('arguments')]"
-                },
-                "dockerComposeYamlUrl": {
-                    "value": "[parameters('dockerComposeYamlUrl')]"
+                "mode": "Incremental",
+                "parameters": {
+                    "prefix": {
+                        "value": "[parameters('prefix')]"
+                    },
+                    "username": {
+                        "value": "[parameters('username')]"
+                    },
+                    "sshPublicKey": {
+                        "value": "[parameters('sshPublicKey')]"
+                    },
+                    "arguments": {
+                        "value": "[parameters('arguments')]"
+                    },
+                    "dockerComposeYamlUrl": {
+                        "value": "[parameters('dockerComposeYamlUrl')]"
+                    }
                 }
             }
         }
-    }]
+    ]
 }
