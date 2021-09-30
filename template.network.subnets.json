@@ -26,7 +26,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('namingInfix'),'-nsgLoop-', copyIndex())]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "copy": {
         "name": "nsgLoop",
         "count": "[length(parameters('subnets'))]"
@@ -53,7 +53,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('namingInfix'),'-nsgLoop-merge-0')]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
@@ -65,7 +65,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('namingInfix'),'-nsgLoop-merge-', copyIndex(1))]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "copy": {
         "name": "mergeLoop",
         "count": "[length(parameters('subnets'))]"

@@ -67,7 +67,7 @@
   },
   "variables": {
     "instanceCount": "[int(parameters('instanceCount'))]",
-    "apiVersion": "2015-06-15",
+    "apiVersion": "2021-04-01",
     "resourceLocation": "[parameters('location')]",
     "namingInfix": "[toLower(parameters('vmssName'))]",
     "nicName": "[concat('nic-', variables('namingInfix'))]",

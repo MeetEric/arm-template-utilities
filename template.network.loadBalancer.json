@@ -47,7 +47,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('loadBalancerName'),'-lbLoop-0')]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
@@ -59,7 +59,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('loadBalancerName'),'-lbLoop-', copyIndex(1))]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "copy": {
         "name": "mergeLoop",
         "count": "[length(parameters('rules'))]"
@@ -107,7 +107,7 @@
     {
       "type": "Microsoft.Network/loadBalancers",
       "name": "[variables('loadBalancerName')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2021-04-01",
       "location": "[variables('resourceLocation')]",
       "properties": {
         "frontendIPConfigurations": "[variables('ipConfiguration')]",

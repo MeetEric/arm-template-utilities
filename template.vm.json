@@ -52,7 +52,7 @@
     {
       "type": "Microsoft.Compute/virtualMachines",
       "name": "[variables('machineName')]",
-      "apiVersion": "2015-06-15",
+      "apiVersion": "2021-04-01",
       "location": "[variables('location')]",
       "properties": {
         "hardwareProfile": {

@@ -40,7 +40,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[variables('loadBalancerName')]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",

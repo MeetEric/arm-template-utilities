@@ -22,7 +22,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('rootName'), '0')]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "properties": {
         "templateLink": {
           "contentVersion": "1.0.0.0",
@@ -37,7 +37,7 @@
     {
       "type": "Microsoft.Resources/deployments",
       "name": "[concat(variables('rootName'), add(copyIndex(),1))]",
-      "apiVersion": "2015-01-01",
+      "apiVersion": "2021-04-01",
       "copy": {
         "name": "extensionsLoop",
         "count": "[length(parameters('extensions'))]"

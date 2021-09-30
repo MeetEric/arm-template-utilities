@@ -7,7 +7,7 @@
     },
     "apiVersion": {
       "type": "string",
-      "defaultValue": "2015-01-01"
+      "defaultValue": "2021-04-01"
     }
   },
   "resources": [
