@@ -31,18 +31,18 @@ if [ ! -f $SCRIPT_COMPLETE ]; then
   echo > $SCRIPT_COMPLETE
 fi
 
-apt-get install -y nodejs-legacy npm >> $LOG 2>&1
+apt-get install -y npm nodejs >> $LOG 2>&1
 echo $JSON_PAYLOAD | base64 -d > $SCRIPTS/data.json
 download $ROOT_URL/initScripts/initNode.js $SCRIPTS/initNode.js 
 download $ROOT_URL/initScripts/package.json $SCRIPTS/package.json 
 
 for ARG in "$@"
 do
-  if [ -z "$SKIP" ]; then
-    SKIP=1
-  else
-     NEWARGS="$NEWARGS $ARG"
-  fi
+ if [ -z "$SKIP" ]; then
+   SKIP=1
+ else
+    NEWARGS="$NEWARGS $ARG"
+ fi
 done
 
 ACTIVE_DIR=$(pwd)
